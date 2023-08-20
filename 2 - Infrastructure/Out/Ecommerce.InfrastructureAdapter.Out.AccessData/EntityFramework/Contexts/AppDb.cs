@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ECommerce.Application.DomainModel.Entities;
 using ECommerce.InfrastructureAdapter.Out.AccessData.EntityFramework.Products;
 using Microsoft.Extensions.Configuration;
+using Ecommerce.InfrastructureAdapter.Out.AccessData.Helpers;
 
 namespace ECommerce.InfrastructureAdapter.Out.AccessData.EntityFramework.Contexts
 {
@@ -22,29 +23,9 @@ namespace ECommerce.InfrastructureAdapter.Out.AccessData.EntityFramework.Context
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer();
+        {            
+            optionsBuilder.UseSqlServer("connection");
             base.OnConfiguring(optionsBuilder);
-        }
-
-        public static IConfigurationRoot GetAppSettings()
-        {
-            return new ConfigurationBuilder()
-                 .SetBasePath(Path.Combine(TryGetSolutionDirectoryInfo().FullName,
-                     @"Ecommerce.InfrastructureAdapter.Out.AccessData"))
-                 .AddJsonFile("appsettings.json")
-                 .Build();
-        }
-
-        public static DirectoryInfo TryGetSolutionDirectoryInfo(string? currentPath = null)
-        {
-            var directory = new DirectoryInfo(
-            currentPath ?? Directory.GetCurrentDirectory());
-            while (directory != null && !directory.GetFiles("*.sln").Any())
-            {
-                directory = directory.Parent;
-            }
-            return directory;
         }
     }
 }

@@ -19,9 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "In", "In", "{511EF84D-5EBF-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Out", "Out", "{E4CEC26D-F5C3-427A-9B97-FBE1B5D3A5E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.InfrastructureAdapter.In.WebApi", "2 - Infrastructure\In\ECommerce.InfrastructureAdapter.In.WebApi\ECommerce.InfrastructureAdapter.In.WebApi.csproj", "{0809A828-D28B-4F9C-AAA4-B17F3A5C7EBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.InfrastructureAdapter.In.WebApi", "2 - Infrastructure\In\ECommerce.InfrastructureAdapter.In.WebApi\ECommerce.InfrastructureAdapter.In.WebApi.csproj", "{0809A828-D28B-4F9C-AAA4-B17F3A5C7EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.InfrastructureAdapter.Out.AccessData", "2 - Infrastructure\Out\Ecommerce.InfrastructureAdapter.Out.AccessData\Ecommerce.InfrastructureAdapter.Out.AccessData.csproj", "{19B8259F-10A3-4725-B343-1636B06640CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.InfrastructureAdapter.Out.AccessData", "2 - Infrastructure\Out\Ecommerce.InfrastructureAdapter.Out.AccessData\Ecommerce.InfrastructureAdapter.Out.AccessData.csproj", "{19B8259F-10A3-4725-B343-1636B06640CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
