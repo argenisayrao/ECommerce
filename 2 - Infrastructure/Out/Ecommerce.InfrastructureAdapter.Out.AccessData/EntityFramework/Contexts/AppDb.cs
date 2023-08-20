@@ -23,7 +23,7 @@ namespace ECommerce.InfrastructureAdapter.Out.AccessData.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@);
+            optionsBuilder.UseSqlServer();
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -31,8 +31,8 @@ namespace ECommerce.InfrastructureAdapter.Out.AccessData.EntityFramework.Context
         {
             return new ConfigurationBuilder()
                  .SetBasePath(Path.Combine(TryGetSolutionDirectoryInfo().FullName,
-                     @"Vale.ECOS.Noise.Integration.Api"))
-                 .AddJsonFile("appsettings.Development.json")
+                     @"Ecommerce.InfrastructureAdapter.Out.AccessData"))
+                 .AddJsonFile("appsettings.json")
                  .Build();
         }
 
