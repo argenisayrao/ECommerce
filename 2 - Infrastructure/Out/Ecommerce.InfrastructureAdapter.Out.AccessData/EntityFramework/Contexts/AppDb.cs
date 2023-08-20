@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using ECommerce.Application.DomainModel.Entities;
 using ECommerce.InfrastructureAdapter.Out.AccessData.EntityFramework.Products;
-using Microsoft.Extensions.Configuration;
-using Ecommerce.InfrastructureAdapter.Out.AccessData.Helpers;
 
 namespace ECommerce.InfrastructureAdapter.Out.AccessData.EntityFramework.Contexts
 {
