@@ -3,6 +3,7 @@ using ECommerce.Application.UseCase.Ports.Out;
 using ECommerce.Application.UseCase.UseCase.AddProduct;
 using ECommerce.Application.UseCase.UseCase.GetProductById;
 using ECommerce.Application.UseCase.UseCase.SearchProduct;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerce.Application.UseCase
 {
