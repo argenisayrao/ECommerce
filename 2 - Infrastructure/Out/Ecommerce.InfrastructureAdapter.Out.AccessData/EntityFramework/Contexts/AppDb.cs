@@ -22,7 +22,7 @@ namespace ECommerce.InfrastructureAdapter.Out.AccessData.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {            
-            optionsBuilder.UseSqlServer("connection");
+            optionsBuilder.UseSqlServer(@"Server=LAPTOP-UHI8IM2M\SQLEXPRESS;Database=ECommerce;Trusted_Connection=True;TrustServerCertificate=True");
             base.OnConfiguring(optionsBuilder);
         }
     }

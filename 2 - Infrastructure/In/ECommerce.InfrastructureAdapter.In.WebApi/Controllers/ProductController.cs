@@ -43,7 +43,7 @@ namespace ECommerce.InfrastructureAdapter.In.WebApi.Controllers
         {
             var addProductPortIn = _mapper.Map<AddProductPortIn>(product);
             var addProductPortOut = await _addProduct.ExecuteAsync(addProductPortIn);
-
+                        
             if (addProductPortOut.Success)
                 return Ok(JsonSerializer.Serialize(addProductPortOut));
 
