@@ -21,9 +21,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\1 - Application\UseCase\ECommerce.Application.UseCase\ECommerce.Application.UseCase.csproj" />
-    <ProjectReference Include="..\..\Out\Ecommerce.InfrastructureAdapter.Out.AccessData\Ecommerce.InfrastructureAdapter.Out.AccessData.csproj" />
-  </ItemGroup>
-
 </Project>
