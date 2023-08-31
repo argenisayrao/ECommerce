@@ -17,10 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Out", "Out", "{E4CEC26D-F5C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2FDF8183-1876-43C7-8A8F-52FED94C5E6C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4E1D338D-1936-4D02-83F4-A2CBF7B00D88}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Core.Infrastructure.Out.Bus.Kafka", "Core\Infrastructure\Out\Bus.Kafka\Ecommerce.Core.Infrastructure.Out.Bus.Kafka\Ecommerce.Core.Infrastructure.Out.Bus.Kafka.csproj", "{FF40CD22-3494-491A-AE0C-A69734FEF26B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{E874B3B6-EC92-4C67-9C8B-955BBF7603FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Core.Domain", "Core\Domain\Ecommerce.Core.Domain\Ecommerce.Core.Domain.csproj", "{EC7DC41D-9111-4896-A62A-8456DB48E65C}"
@@ -29,15 +25,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{70C7B087-E555-4618-8B54-664159EF61B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Catalog.Application.DomainModel", "Microsservices\Catalog\1 - Application\1.1 - DomainModel\ECommerce.Catalog.Application.DomainModel\ECommerce.Catalog.Application.DomainModel.csproj", "{8D0F91E1-551A-4EBE-B470-CB1B32FFEAA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Catalog.Application.DomainModel", "Microsservices\Catalog\1 - Application\1.1 - DomainModel\ECommerce.Catalog.Application.DomainModel\ECommerce.Catalog.Application.DomainModel.csproj", "{8D0F91E1-551A-4EBE-B470-CB1B32FFEAA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Catalog.Application.UseCase", "Microsservices\Catalog\1 - Application\1.2 - UseCase\ECommerce.Catalog.Application.UseCase\ECommerce.Catalog.Application.UseCase.csproj", "{5AD14AC6-98AA-4613-8DCA-52CE88D4F7C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Catalog.Application.UseCase", "Microsservices\Catalog\1 - Application\1.2 - UseCase\ECommerce.Catalog.Application.UseCase\ECommerce.Catalog.Application.UseCase.csproj", "{5AD14AC6-98AA-4613-8DCA-52CE88D4F7C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Catalog.InfrastructureAdapter.In.WebApi", "Microsservices\Catalog\2 - Infrastructure\In\ECommerce.Catalog.InfrastructureAdapter.In.WebApi\ECommerce.Catalog.InfrastructureAdapter.In.WebApi.csproj", "{0D353033-8375-45DF-B6D9-9DDECB1E6444}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Catalog.InfrastructureAdapter.In.WebApi", "Microsservices\Catalog\2 - Infrastructure\In\ECommerce.Catalog.InfrastructureAdapter.In.WebApi\ECommerce.Catalog.InfrastructureAdapter.In.WebApi.csproj", "{0D353033-8375-45DF-B6D9-9DDECB1E6444}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka", "Microsservices\Catalog\2 - Infrastructure\In\ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka\ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.csproj", "{9904086A-24FE-479A-8F7A-F0404F6DF6BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka", "Microsservices\Catalog\2 - Infrastructure\In\ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka\ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.csproj", "{9904086A-24FE-479A-8F7A-F0404F6DF6BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB", "Microsservices\Catalog\2 - Infrastructure\Out\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.csproj", "{AE49E401-92FE-41E7-81CB-55BEC7D6257D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB", "Microsservices\Catalog\2 - Infrastructure\Out\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.csproj", "{AE49E401-92FE-41E7-81CB-55BEC7D6257D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +41,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FF40CD22-3494-491A-AE0C-A69734FEF26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF40CD22-3494-491A-AE0C-A69734FEF26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF40CD22-3494-491A-AE0C-A69734FEF26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF40CD22-3494-491A-AE0C-A69734FEF26B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC7DC41D-9111-4896-A62A-8456DB48E65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC7DC41D-9111-4896-A62A-8456DB48E65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC7DC41D-9111-4896-A62A-8456DB48E65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -84,8 +76,6 @@ Global
 		{6BB63DE6-F805-4534-BB7A-79BCC44B3AE4} = {70C7B087-E555-4618-8B54-664159EF61B3}
 		{511EF84D-5EBF-450B-B511-C268295AED06} = {6BB63DE6-F805-4534-BB7A-79BCC44B3AE4}
 		{E4CEC26D-F5C3-427A-9B97-FBE1B5D3A5E1} = {6BB63DE6-F805-4534-BB7A-79BCC44B3AE4}
-		{4E1D338D-1936-4D02-83F4-A2CBF7B00D88} = {2FDF8183-1876-43C7-8A8F-52FED94C5E6C}
-		{FF40CD22-3494-491A-AE0C-A69734FEF26B} = {4E1D338D-1936-4D02-83F4-A2CBF7B00D88}
 		{E874B3B6-EC92-4C67-9C8B-955BBF7603FC} = {2FDF8183-1876-43C7-8A8F-52FED94C5E6C}
 		{EC7DC41D-9111-4896-A62A-8456DB48E65C} = {E874B3B6-EC92-4C67-9C8B-955BBF7603FC}
 		{70C7B087-E555-4618-8B54-664159EF61B3} = {0B005D7B-EC92-49C8-B714-4D7D063F79B6}

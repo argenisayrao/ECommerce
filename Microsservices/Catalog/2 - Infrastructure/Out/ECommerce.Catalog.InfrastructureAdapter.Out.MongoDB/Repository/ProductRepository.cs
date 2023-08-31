@@ -38,16 +38,16 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
         {
             try
             {
-                await _retryPolicy.Execute(async () =>
-                {
+                //await _retryPolicy.Execute(async () =>
+                //{
                     await _collection.InsertOneAsync(product);
-                });
+                //});
             }
             catch (Exception errorAtInsertInDatabase)
             {
                 throw new ApplicationCoreException($"don't possible insert data in MongoDb." +
                     $" Database: '{ConstantsMongo.MongoDataBaseName}'," +
-                    $" Colection: Products',Data:{Newtonsoft.Json.JsonConvert.SerializeObject(product)}", errorAtInsertInDatabase);
+                    $" Colection: Products',Data:{Newtonsoft.Json.JsonConvert.SerializeObject(product)} Message:{errorAtInsertInDatabase}", errorAtInsertInDatabase);
             }
         }
 

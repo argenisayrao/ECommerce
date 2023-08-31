@@ -1,6 +1,4 @@
-﻿
-using ECommerce.Application.DomainModel.Notifiables;
-using ECommerce.Catalog.Application.DomainModel.Entities;
+﻿using ECommerce.Catalog.Application.DomainModel.Entities;
 using ECommerce.Catalog.Application.DomainModel.Notifiables;
 using ECommerce.Catalog.Application.UseCase.Ports.In;
 using ECommerce.Catalog.Application.UseCase.Ports.Out;

@@ -2,8 +2,8 @@
 using MongoDB.Bson.Serialization.Attributes;
 using FluentValidator;
 using FluentValidator.Validation;
-using ECommerce.Application.DomainModel.Notifiables;
 using ECommerce.Catalog.Application.DomainModel.Base;
+using ECommerce.Catalog.Application.DomainModel.Notifiables;
 
 namespace ECommerce.Catalog.Application.DomainModel.Entities
 {

@@ -13,7 +13,7 @@ var configuration = builder.Build();
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.ConfigureOptions(configuration);
+       
         services.AddSingleton(configuration);
 
         var consumer = new ConsumerConfig
