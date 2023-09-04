@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Application", "1-Application", "{22194520-9670-4D5D-BAA3-129732083653}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{22194520-9670-4D5D-BAA3-129732083653}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 - DomainModel", "1.1 - DomainModel", "{229DED0B-6EEA-49A7-819D-4C1D3198A063}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 - UseCase", "1.2 - UseCase", "{89F60BAC-1287-4C0B-8EDF-83E80528D1AC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Infrastructure", "2-Infrastructure", "{6BB63DE6-F805-4534-BB7A-79BCC44B3AE4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infrastructure", "2 - Infrastructure", "{6BB63DE6-F805-4534-BB7A-79BCC44B3AE4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "In", "In", "{511EF84D-5EBF-450B-B511-C268295AED06}"
 EndProject
@@ -34,6 +34,18 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka", "Microsservices\Catalog\2 - Infrastructure\In\ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka\ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.csproj", "{9904086A-24FE-479A-8F7A-F0404F6DF6BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB", "Microsservices\Catalog\2 - Infrastructure\Out\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.csproj", "{AE49E401-92FE-41E7-81CB-55BEC7D6257D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99 - Tests", "99 - Tests", "{A66C3BAF-2B94-426A-9D28-E824C32E3F7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{8A46D3C8-3594-47D1-9336-6112F7128E63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Units", "Units", "{3A38AA5D-38AB-4BAB-AEB5-475E7B9B8588}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Catalog.Integration.Tests", "Microsservices\Catalog\99 - Tests\ECommerce.Catalog.Integration.Tests\ECommerce.Catalog.Integration.Tests.csproj", "{9FB8D3F3-F98E-4C7F-B51D-30331292A7DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Catalog.Application.UseCase.Unit.Tests", "Microsservices\Catalog\99 - Tests\ECommerce.Catalog.Application.UseCase.Unit.Tests\ECommerce.Catalog.Application.UseCase.Unit.Tests.csproj", "{15328CA9-092C-4A53-93C7-83F37DC155A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex.Arq.Hex.Application.DomainModel.Unit.Tests", "Microsservices\Catalog\99 - Tests\Ex.Arq.Hex.Application.DomainModel.Unit.Tests\Ex.Arq.Hex.Application.DomainModel.Unit.Tests.csproj", "{94B9DE10-D3B6-4443-97AC-11A74770A2B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +77,18 @@ Global
 		{AE49E401-92FE-41E7-81CB-55BEC7D6257D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE49E401-92FE-41E7-81CB-55BEC7D6257D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE49E401-92FE-41E7-81CB-55BEC7D6257D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB8D3F3-F98E-4C7F-B51D-30331292A7DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB8D3F3-F98E-4C7F-B51D-30331292A7DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB8D3F3-F98E-4C7F-B51D-30331292A7DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB8D3F3-F98E-4C7F-B51D-30331292A7DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15328CA9-092C-4A53-93C7-83F37DC155A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15328CA9-092C-4A53-93C7-83F37DC155A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15328CA9-092C-4A53-93C7-83F37DC155A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15328CA9-092C-4A53-93C7-83F37DC155A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B9DE10-D3B6-4443-97AC-11A74770A2B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B9DE10-D3B6-4443-97AC-11A74770A2B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B9DE10-D3B6-4443-97AC-11A74770A2B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B9DE10-D3B6-4443-97AC-11A74770A2B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +108,12 @@ Global
 		{0D353033-8375-45DF-B6D9-9DDECB1E6444} = {511EF84D-5EBF-450B-B511-C268295AED06}
 		{9904086A-24FE-479A-8F7A-F0404F6DF6BD} = {511EF84D-5EBF-450B-B511-C268295AED06}
 		{AE49E401-92FE-41E7-81CB-55BEC7D6257D} = {E4CEC26D-F5C3-427A-9B97-FBE1B5D3A5E1}
+		{A66C3BAF-2B94-426A-9D28-E824C32E3F7A} = {70C7B087-E555-4618-8B54-664159EF61B3}
+		{8A46D3C8-3594-47D1-9336-6112F7128E63} = {A66C3BAF-2B94-426A-9D28-E824C32E3F7A}
+		{3A38AA5D-38AB-4BAB-AEB5-475E7B9B8588} = {A66C3BAF-2B94-426A-9D28-E824C32E3F7A}
+		{9FB8D3F3-F98E-4C7F-B51D-30331292A7DC} = {8A46D3C8-3594-47D1-9336-6112F7128E63}
+		{15328CA9-092C-4A53-93C7-83F37DC155A4} = {3A38AA5D-38AB-4BAB-AEB5-475E7B9B8588}
+		{94B9DE10-D3B6-4443-97AC-11A74770A2B9} = {3A38AA5D-38AB-4BAB-AEB5-475E7B9B8588}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {214D067B-29DB-4920-8B42-9CD54BD2CE6B}
