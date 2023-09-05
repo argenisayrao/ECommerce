@@ -16,7 +16,7 @@ namespace ECommerce.Catalog.Application.UseCase.UseCase.GetProductById
         {
             var product = await _productRepository.GetByIdAsync(dataPortIn.Id);
             if (product is not null)
-                return new GetProductByIdPortOut(product.Id, product.Name, product.Value);
+                return new GetProductByIdPortOut(product.Id.ToString(), product.Name, product.Value);
 
             return new GetProductByIdPortOut(false);
         }

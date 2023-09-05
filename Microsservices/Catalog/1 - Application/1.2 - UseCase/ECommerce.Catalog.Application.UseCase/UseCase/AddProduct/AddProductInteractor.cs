@@ -16,19 +16,19 @@ namespace ECommerce.Catalog.Application.UseCase.UseCase.AddProduct
 
         public async Task<AddProductPortOut> ExecuteAsync(AddProductPortIn dataPortIn)
         {
-            var product = new Product(dataPortIn.Name, dataPortIn.Value);
+            var product = new Product(dataPortIn.Id, dataPortIn.Name, dataPortIn.Value);
             AddNotifications(product);
 
             if (Invalid)
             {
                 return new AddProductPortOut(false, "Invalid product",
-                    Notifications, "", 0);
+                    Notifications,"", "", 0);
             }
 
             await _productRepository.AddAsync(product);
 
             return new AddProductPortOut(true, "Valid product",
-                Notifications, product.Name, product.Value);
+                Notifications, product.Id.ToString(), product.Name, product.Value);
         }
     }
 }

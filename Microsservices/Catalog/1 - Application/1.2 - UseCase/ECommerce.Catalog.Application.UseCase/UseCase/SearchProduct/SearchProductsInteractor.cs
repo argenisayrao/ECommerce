@@ -22,7 +22,7 @@ namespace ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct
             foreach (Product product in products)
             {
                 searchProductsPortOut.Add(
-                    new SearchProductsPortOut(product.Id,
+                    new SearchProductsPortOut(product.Id.ToString(),
                                              product.Name,
                                              product.Value));
             }

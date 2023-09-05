@@ -6,12 +6,14 @@ namespace ECommerce.Catalog.Application.UseCase.UseCase.AddProduct
     {
         public AddProductPortOut(bool success, string message,
             IReadOnlyCollection<FluentValidator.Notification> notifications,
-            string name, double value)
+            string id,string name, double value)
             : base(success, message, notifications)
         {
+            Id = id;
             Name = name;
             Value = value;
         }
+        public string Id { get; private set; }
         public string Name { get; private set; }
         public double Value { get; private set; }
     }

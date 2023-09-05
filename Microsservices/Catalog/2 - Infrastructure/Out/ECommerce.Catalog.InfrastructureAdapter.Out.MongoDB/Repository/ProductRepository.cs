@@ -38,10 +38,10 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
         {
             try
             {
-                //await _retryPolicy.Execute(async () =>
-                //{
+                await _retryPolicy.Execute(async () =>
+                {
                     await _collection.InsertOneAsync(product);
-                //});
+                });
             }
             catch (Exception errorAtInsertInDatabase)
             {

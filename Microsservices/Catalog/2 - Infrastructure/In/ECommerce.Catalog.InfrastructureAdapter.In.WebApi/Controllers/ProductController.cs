@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ECommerce.Application.UseCase.Ports.In;
-using ECommerce.Application.UseCase.UseCase.AddProduct;
-using ECommerce.Application.UseCase.UseCase.GetProductById;
-using ECommerce.Application.UseCase.UseCase.SearchProduct;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 using System.Text.Json;
 using ECommerce.Catalog.InfrastructureAdapter.In.WebApi.DTOs;
+using ECommerce.Catalog.Application.UseCase.Ports.In;
+using ECommerce.Catalog.Application.UseCase.UseCase.AddProduct;
+using ECommerce.Catalog.Application.UseCase.UseCase.GetProductById;
+using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
 
 namespace ECommerce.Catalog.InfrastructureAdapter.In.WebApi.Controllers
 {
