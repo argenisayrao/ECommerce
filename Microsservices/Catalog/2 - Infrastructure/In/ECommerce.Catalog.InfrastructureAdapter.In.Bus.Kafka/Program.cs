@@ -13,14 +13,16 @@ var configuration = builder.Build();
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-       
+
         services.AddSingleton(configuration);
 
         var consumer = new ConsumerConfig
         {
             GroupId = configuration.GetConnectionString("KafkaGroupId"),
             BootstrapServers = configuration.GetConnectionString("KafkaBootstrapServers"),
-            AutoOffsetReset = AutoOffsetReset.Earliest
+            AutoOffsetReset = AutoOffsetReset.Earliest,
+            EnableAutoCommit = false,
+            EnablePartitionEof = true
         };
 
         services.AddSingleton(consumer);

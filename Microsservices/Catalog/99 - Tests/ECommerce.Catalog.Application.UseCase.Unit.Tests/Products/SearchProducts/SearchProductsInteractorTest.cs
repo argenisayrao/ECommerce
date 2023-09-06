@@ -1,10 +1,6 @@
-﻿using Ex.Arq.Hex.Application.DomainModel;
-using Ex.Arq.Hex.Application.DomainModel.Entities;
-using Ex.Arq.Hex.Application.DomainModel.Exceptions;
-using Ex.Arq.Hex.Application.UseCase.Constants;
-using Ex.Arq.Hex.Application.UseCase.Exceptions;
-using Ex.Arq.Hex.Application.UseCase.Ports.Out;
-using Ex.Arq.Hex.Application.UseCase.UseCase.Products.SearchProducts;
+﻿using ECommerce.Catalog.Application.DomainModel.Entities;
+using ECommerce.Catalog.Application.UseCase.Ports.Out;
+using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
 using Moq;
 using Xunit;
 
@@ -35,7 +31,7 @@ namespace Ex.Arq.Hex.Application.UseCase.Units.Tests.SearchProducts
 
             var portOut = await _searchProductsInteractor.ExecuteAsync(portIn);
 
-            Assert.Equal(id, portOut.ToList()[0].Id);
+            Assert.Equal(id.ToString(), portOut.ToList()[0].Id);
             Assert.Equal(name, portOut.ToList()[0].Name);
             Assert.Equal(value, portOut.ToList()[0].Value);
         }

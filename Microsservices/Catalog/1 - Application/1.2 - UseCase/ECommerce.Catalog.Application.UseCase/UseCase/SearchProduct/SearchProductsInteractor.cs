@@ -13,21 +13,13 @@ namespace ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct
             _productRepository = productRepository;
         }
 
-        public async Task<IReadOnlyCollection<SearchProductsPortOut>> ExecuteAsync(SearchProductsPortIn portIn)
+        public async Task<SearchProductsPortOut> ExecuteAsync(SearchProductsPortIn portIn)
         {
-            var searchProductsPortOut = new List<SearchProductsPortOut>();
-
             var products = await _productRepository.SearchAsync(portIn.Key);
 
-            foreach (Product product in products)
-            {
-                searchProductsPortOut.Add(
-                    new SearchProductsPortOut(product.Id.ToString(),
-                                             product.Name,
-                                             product.Value));
-            }
-
-            return searchProductsPortOut;
+            var searchProductPortOut = new SearchProductsPortOut(products.ToList());
+            
+            return searchProductPortOut;
         }
     }
 }

@@ -37,9 +37,11 @@ namespace Ex.Arq.Hex.Unit.Integration.UseCase.Products
         [Fact, TestPriority(1)]
         public async Task Product_AddTwoProductsAndSetIds_Success()
         {
+            var idMesa = Guid.NewGuid();
+            var idCadeira = Guid.NewGuid();
             productRepository = new(_mongoDatabase);
-            var addProductPortInMesa = new AddProductPortIn(Guid.NewGuid().ToString(),_names[0], _values[0]);
-            var addProductPortInCadeira = new AddProductPortIn(Guid.NewGuid().ToString(),_names[1], _values[1]);
+            var addProductPortInMesa = new AddProductPortIn(idMesa.ToString(), _names[0], _values[0]);
+            var addProductPortInCadeira = new AddProductPortIn(idCadeira.ToString(),_names[1], _values[1]);
 
             var interactor = new AddProductInteractor(productRepository);
 
@@ -49,14 +51,14 @@ namespace Ex.Arq.Hex.Unit.Integration.UseCase.Products
 
             Assert.Equal(addProductPortInMesa.Name, addProductPortOutMesa.Name);
             Assert.Equal(addProductPortInMesa.Value, addProductPortOutMesa.Value);
-            //Assert.NotEqual(Guid.Empty, addProductPortOutMesa.Id);
+            Assert.NotEqual(idCadeira.ToString(), addProductPortOutMesa.Id);
 
             Assert.Equal(addProductPortInCadeira.Name, addProductPortOutCadeira.Name);
             Assert.Equal(addProductPortInCadeira.Value, addProductPortOutCadeira.Value);
-           // Assert.NotEqual(Guid.Empty, addProductPortOutCadeira.Id);
+            Assert.NotEqual(idCadeira.ToString(),addProductPortOutCadeira.Id);
 
-         //   _ids.Add(addProductPortOutMesa.Id.ToString());
-//_ids.Add(addProductPortOutCadeira.Id.ToString());
+            _ids.Add(addProductPortOutMesa.Id.ToString());
+            _ids.Add(addProductPortOutCadeira.Id.ToString());
         }
 
         //[Fact, TestPriority(2)]

@@ -1,12 +1,7 @@
-﻿using Ex.Arq.Hex.Application.DomainModel;
-using Ex.Arq.Hex.Application.DomainModel.Entities;
-using Ex.Arq.Hex.Application.UseCase.Constants;
-using Ex.Arq.Hex.Application.UseCase.Exceptions.Products.Ports;
-using Ex.Arq.Hex.Application.UseCase.Ports.Out;
-using Ex.Arq.Hex.Application.UseCase.UseCase.Products.AddProducts;
+﻿using ECommerce.Catalog.Application.DomainModel.Entities;
+using ECommerce.Catalog.Application.UseCase.Ports.Out;
+using ECommerce.Catalog.Application.UseCase.UseCase.AddProduct;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Ex.Arq.Hex.Application.UseCase.Units.Tests.AddProducts
@@ -25,13 +20,14 @@ namespace Ex.Arq.Hex.Application.UseCase.Units.Tests.AddProducts
         [Fact]
         public async Task ExecuteAsync_WhenProductPortInIsValid_Success()
         {
-            var portIn = new AddProductPortIn("Lapis", 1.00);
+            var id = Guid.NewGuid();
+            var portIn = new AddProductPortIn(id.ToString(),"Lapis", 1.00);
             
             AddProductPortOut portOut = await _addProductInteractor.ExecuteAsync(portIn);
 
             Assert.Equal(portIn.Name, portOut.Name);
             Assert.Equal(portIn.Value, portOut.Value);
-            Assert.NotEmpty(portOut.Id.ToString());
+            Assert.Equal(id.ToString(),portOut.Id);
         }
 
         [Fact]

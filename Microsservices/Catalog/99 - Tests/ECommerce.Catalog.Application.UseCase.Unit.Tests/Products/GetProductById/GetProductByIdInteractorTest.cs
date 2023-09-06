@@ -1,11 +1,6 @@
-﻿using Ex.Arq.Hex.Application.DomainModel;
-using Ex.Arq.Hex.Application.DomainModel.Entities;
-using Ex.Arq.Hex.Application.DomainModel.Exceptions;
-using Ex.Arq.Hex.Application.UseCase.Constants;
-using Ex.Arq.Hex.Application.UseCase.Exceptions;
-using Ex.Arq.Hex.Application.UseCase.Exceptions.Products.UseCases;
-using Ex.Arq.Hex.Application.UseCase.Ports.Out;
-using Ex.Arq.Hex.Application.UseCase.UseCase.Products.GetProductById;
+﻿using ECommerce.Catalog.Application.DomainModel.Entities;
+using ECommerce.Catalog.Application.UseCase.Ports.Out;
+using ECommerce.Catalog.Application.UseCase.UseCase.GetProductById;
 using Moq;
 using Xunit;
 
@@ -38,22 +33,21 @@ namespace Ex.Arq.Hex.Application.UseCase.Units.Tests.GetProductById
 
             GetProductByIdPortOut productPortOut = await _getProductByIdInteractor.ExecuteAsync(_productPortIn);
 
-            Assert.Equal(_id, productPortOut.Id);
+            Assert.Equal(_id.ToString(), productPortOut.Id);
             Assert.Equal(name, productPortOut.Name);
             Assert.Equal(value, productPortOut.Value);
         }
 
         [Fact]
-        public async Task ExecuteAsync_WhenProductNotExists_GetProductByIdInteractorException()
+        public async Task ExecuteAsync_WhenProductNotExists_ProductExistsIsFalse()
         {
             var productPortIn = new GetProductByIdPortIn(Guid.NewGuid());
 
             _productRepository.Setup(_ => _.GetByIdAsync(_id));
 
-            Exception exception = await Assert.ThrowsAsync<GetProductByIdInteractorException>(() =>
-             _getProductByIdInteractor.ExecuteAsync(productPortIn));
+            var getProductByIdPortOut = await _getProductByIdInteractor.ExecuteAsync(productPortIn);
 
-            Assert.Equal(UseCaseConstants.ProductNotExists, exception.Message);
+            Assert.False(getProductByIdPortOut.IsExists);
         }
 
         [Fact]

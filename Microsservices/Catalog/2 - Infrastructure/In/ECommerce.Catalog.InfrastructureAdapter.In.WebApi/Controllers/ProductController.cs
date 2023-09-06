@@ -85,11 +85,10 @@ namespace ECommerce.Catalog.InfrastructureAdapter.In.WebApi.Controllers
             }
 
             var searchProductsPortIn = new SearchProductsPortIn(key);
-
             var searchProductsPortOut = await _searchProducts.ExecuteAsync(searchProductsPortIn);
 
-            if (searchProductsPortOut.Any())
-                return Ok(JsonSerializer.Serialize(searchProductsPortOut));
+            if (searchProductsPortOut.SearchProductPortOut.Any())
+                return Ok(searchProductsPortOut);
 
             return NotFound();
         }
