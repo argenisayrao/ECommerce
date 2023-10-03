@@ -2,10 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
-using System.Text.Json;
-using ECommerce.Catalog.InfrastructureAdapter.In.WebApi.DTOs;
 using ECommerce.Catalog.Application.UseCase.Ports.In;
-using ECommerce.Catalog.Application.UseCase.UseCase.AddProduct;
 using ECommerce.Catalog.Application.UseCase.UseCase.GetProductById;
 using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
 
@@ -32,25 +29,6 @@ namespace ECommerce.Catalog.InfrastructureAdapter.In.WebApi.Controllers
             _mapper = mapper;
         }
 
-
-        [HttpPost]
-        [Route("add-product")]
-        [SwaggerOperation("Add product")]
-        [SwaggerResponse((int)HttpStatusCode.OK, "Product added successfully", typeof(AddProductPortOut))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, "Product with invalid fields", typeof(AddProductPortOut))]
-        [SwaggerResponse((int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> AddProduct(ProductDto product)
-        {
-            var addProductPortIn = _mapper.Map<AddProductPortIn>(product);
-            var addProductPortOut = await _addProduct.ExecuteAsync(addProductPortIn);
-
-            if (addProductPortOut.Success)
-                return Ok(JsonSerializer.Serialize(addProductPortOut));
-
-            return BadRequest(JsonSerializer.Serialize(addProductPortOut));
-        }
-
-
         [HttpGet]
         [Route("get-product-by-id")]
         [SwaggerOperation("Get product by id")]
@@ -68,7 +46,6 @@ namespace ECommerce.Catalog.InfrastructureAdapter.In.WebApi.Controllers
 
             return NotFound();
         }
-
 
         [HttpGet]
         [Route("search-products")]

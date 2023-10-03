@@ -3,9 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="Confluent.Kafka" Version="2.2.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
 		<PackageReference Include="MongoDB.Driver" Version="2.21.0" />
 		<PackageReference Include="Moq" Version="4.18.4" />
@@ -22,6 +23,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\1 - Application\1.1 - DomainModel\ECommerce.Catalog.Application.DomainModel\ECommerce.Catalog.Application.DomainModel.csproj" />
 	  <ProjectReference Include="..\..\1 - Application\1.2 - UseCase\ECommerce.Catalog.Application.UseCase\ECommerce.Catalog.Application.UseCase.csproj" />
+	  <ProjectReference Include="..\..\2 - Infrastructure\In\ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka\ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.csproj" />
 	  <ProjectReference Include="..\..\2 - Infrastructure\Out\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.csproj" />
 	</ItemGroup>
 

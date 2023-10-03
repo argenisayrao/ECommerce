@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace Ex.Arq.Hex.Unit.Integration.ConfigOrderTests
+namespace ECommerce.Catalog.Integration.Tests.ConfigOrderTests
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class TestPriorityAttribute : Attribute
@@ -20,16 +20,16 @@ namespace Ex.Arq.Hex.Unit.Integration.ConfigOrderTests
     }
     public class PriorityOrderer : ITestCaseOrderer
     {
-            [AttributeUsage(AttributeTargets.Method)]
-    public class TestPriorityAttribute : Attribute
-    {
-        public TestPriorityAttribute(int priority)
+        [AttributeUsage(AttributeTargets.Method)]
+        public class TestPriorityAttribute : Attribute
         {
-            Priority = priority;
-        }
+            public TestPriorityAttribute(int priority)
+            {
+                Priority = priority;
+            }
 
-        public int Priority { get; }
-    }
+            public int Priority { get; }
+        }
         public IEnumerable<TTestCase> OrderTestCases<TTestCase>(IEnumerable<TTestCase> testCases) where TTestCase : ITestCase
         {
             var sortedMethods = new SortedDictionary<int, List<TTestCase>>();
@@ -38,7 +38,7 @@ namespace Ex.Arq.Hex.Unit.Integration.ConfigOrderTests
             {
                 var priority = 0;
 
-                foreach (var attr in testCase.TestMethod.Method.GetCustomAttributes((typeof(TestPriorityAttribute).AssemblyQualifiedName)))
+                foreach (var attr in testCase.TestMethod.Method.GetCustomAttributes(typeof(TestPriorityAttribute).AssemblyQualifiedName))
                     priority = attr.GetNamedArgument<int>("Priority");
 
                 GetOrCreate(sortedMethods, priority).Add(testCase);

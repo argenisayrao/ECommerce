@@ -4,6 +4,7 @@ using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.Consumers;
 using Microsoft.Extensions.Configuration;
+using ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.Constants;
 
 var builder = new ConfigurationBuilder()
     .AddJsonFile($"appsettings.json", true, true)
@@ -18,8 +19,8 @@ IHost host = Host.CreateDefaultBuilder(args)
 
         var consumer = new ConsumerConfig
         {
-            GroupId = configuration.GetConnectionString("KafkaGroupId"),
-            BootstrapServers = configuration.GetConnectionString("KafkaBootstrapServers"),
+            GroupId = configuration.GetConnectionString(ConstantsKafka.KafkaGroupId),
+            BootstrapServers = configuration.GetConnectionString(ConstantsKafka.KafkaBootstrapServers),
             AutoOffsetReset = AutoOffsetReset.Earliest,
             EnableAutoCommit = false,
             EnablePartitionEof = true

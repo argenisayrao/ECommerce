@@ -1,4 +1,4 @@
-﻿namespace ValeECOS.ExternalInterface.GarbageCollection.TestHelpers.AppSettingsConfigHelper
+﻿namespace ECommerce.Catalog.Integration.Tests.Helpers
 {
     public static class SolutionPathHelper
     {

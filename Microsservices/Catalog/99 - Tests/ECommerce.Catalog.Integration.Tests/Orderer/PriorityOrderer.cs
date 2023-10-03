@@ -1,8 +1,8 @@
 ﻿using Xunit.Sdk;
 using Xunit.Abstractions;
-using Ex.Arq.Hex.Unit.Integration.Attributes;
+using ECommerce.Catalog.Integration.Tests.Attributes;
 
-namespace Ex.Arq.Hex.Unit.Integration.Orderer
+namespace ECommerce.Catalog.Integration.Tests.Orderer
 {
     public class PriorityOrderer : ITestCaseOrderer
     {

@@ -27,19 +27,19 @@ namespace Ex.Arq.Hex.Application.UseCase.Units.Tests.SearchProducts
             var product = new Product(id, name, value);
             var portIn = new SearchProductsPortIn("mes");
 
-            _productRepository.Setup(_ => _.SearchAsync(portIn.Key)).ReturnsAsync(new List<Product>() { product });
+            _productRepository.Setup(_ => _.SearchAsyncByName(portIn.Key)).ReturnsAsync(new List<Product>() { product });
 
             var portOut = await _searchProductsInteractor.ExecuteAsync(portIn);
 
-            Assert.Equal(id.ToString(), portOut.ToList()[0].Id);
-            Assert.Equal(name, portOut.ToList()[0].Name);
-            Assert.Equal(value, portOut.ToList()[0].Value);
+            Assert.Equal(id.ToString(), portOut.SearchProductPortOut[0].Id);
+            Assert.Equal(name, portOut.SearchProductPortOut[0].Name);
+            Assert.Equal(value, portOut.SearchProductPortOut[0].Value);
         }
 
         [Fact]
         public async Task ExecuteAsync_WhenRepositoryReturnException_Success()
         {
-            _productRepository.Setup(_ => _.SearchAsync(It.IsAny<string>())).Throws<Exception>();
+            _productRepository.Setup(_ => _.SearchAsyncByName(It.IsAny<string>())).Throws<Exception>();
 
             await Assert.ThrowsAsync<NullReferenceException>(() =>
                        _searchProductsInteractor.ExecuteAsync(It.IsAny<SearchProductsPortIn>()));

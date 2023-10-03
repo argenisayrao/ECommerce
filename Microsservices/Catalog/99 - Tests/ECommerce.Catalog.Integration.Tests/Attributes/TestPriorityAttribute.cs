@@ -1,4 +1,4 @@
-﻿namespace Ex.Arq.Hex.Unit.Integration.Attributes
+﻿namespace ECommerce.Catalog.Integration.Tests.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class TestPriorityAttribute : Attribute

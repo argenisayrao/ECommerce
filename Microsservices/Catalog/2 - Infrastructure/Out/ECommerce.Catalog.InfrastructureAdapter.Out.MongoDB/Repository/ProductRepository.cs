@@ -33,7 +33,7 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
                 .WaitAndRetry(ConstantsMongo.NumberOfTries, retryAttempt =>
                 TimeSpan.FromSeconds(CalculateTimeSpamForRetryInterval(retryAttempt)));
         }
-         
+
         public async Task AddAsync(Product product)
         {
             try
@@ -51,14 +51,16 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
             }
         }
 
-        public Task<Product> GetByIdAsync(Guid id)
+        public async Task<Product> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = _filterBuilder.Where(x => x.Id == id);
+            return await _collection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public Task<IReadOnlyCollection<Product>> SearchAsync(string key)
+        public async Task<IReadOnlyCollection<Product>> SearchAsyncByName(string key)
         {
-            throw new NotImplementedException();
+            var filter = _filterBuilder.Where(x => x.Name.Contains(key));
+            return await _collection.Find(filter).ToListAsync();        
         }
 
         private static double CalculateTimeSpamForRetryInterval(int retryAttempt)

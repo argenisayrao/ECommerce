@@ -15,7 +15,7 @@ namespace ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct
 
         public async Task<SearchProductsPortOut> ExecuteAsync(SearchProductsPortIn portIn)
         {
-            var products = await _productRepository.SearchAsync(portIn.Key);
+            var products = await _productRepository.SearchAsyncByName(portIn.Key);
 
             var searchProductPortOut = new SearchProductsPortOut(products.ToList());
             

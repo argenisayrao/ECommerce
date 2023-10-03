@@ -30,10 +30,10 @@ namespace ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.Consumers
             {
                 using var consumer = new ConsumerBuilder<Ignore, string>(_consumerConfig).Build();
                 Console.WriteLine($"consuming data from {topic}");
+                consumer.Subscribe(topic);
 
                 while (!stoppingToken.IsCancellationRequested)
-                {
-                    consumer.Subscribe(topic);
+                {                   
                     var consumedDataResult = consumer.Consume();
                     if (consumedDataResult.IsPartitionEOF) continue;
                     try
