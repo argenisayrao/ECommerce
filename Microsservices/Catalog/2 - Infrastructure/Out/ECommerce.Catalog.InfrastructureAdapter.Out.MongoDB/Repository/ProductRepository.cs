@@ -4,13 +4,6 @@ using ECommerce.Catalog.Application.UseCase.Ports.Out;
 using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Constants;
 using MongoDB.Driver;
 using Polly;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Bson.IO;
 
 namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
 {

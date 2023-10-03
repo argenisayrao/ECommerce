@@ -3,6 +3,7 @@ using ECommerce.Catalog.Application.UseCase.Ports.Out;
 using ECommerce.Catalog.Application.UseCase.UseCase.AddProduct;
 using ECommerce.Catalog.Application.UseCase.UseCase.GetProductById;
 using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerce.Catalog.Application.UseCase
@@ -21,6 +22,19 @@ namespace ECommerce.Catalog.Application.UseCase
             services.AddScoped<IAddProductInteractor, AddProductInteractor>();
             services.AddScoped<ISearchProductsInteractor, SearchProductsInteractor>();
             services.AddScoped<IGetProductByIdInteractor, GetProductByIdInteractor>();
+
+            return services;
+        }
+        public static IServiceCollection AddCachingServiceApplication<TCachingService>(this IServiceCollection services,
+            string addressRedis)
+            where TCachingService : class, ICachingService
+        {
+            services.AddScoped<ICachingService, TCachingService>();
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.InstanceName = "instance";
+                options.Configuration = addressRedis;
+            });
 
             return services;
         }
