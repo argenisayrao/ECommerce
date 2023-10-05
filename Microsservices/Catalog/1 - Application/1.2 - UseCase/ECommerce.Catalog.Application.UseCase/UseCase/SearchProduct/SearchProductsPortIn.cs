@@ -2,11 +2,9 @@
 {
     public class SearchProductsPortIn
     {
-        public SearchProductsPortIn(string key)
-        {
-            Key = key;
-        }
-        public string Key { get; private set; }
+        public string Name { get; set; }
+        public int Page { get; set; }
+        public int PageSize { get; set; }
     }
 }
 

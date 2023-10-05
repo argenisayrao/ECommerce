@@ -1,5 +1,6 @@
 ﻿using ECommerce.Catalog.Application.DomainModel.Entities;
 using ECommerce.Catalog.Application.UseCase.Ports.Out;
+using ECommerce.Catalog.Application.UseCase.Services.Interfaces;
 using ECommerce.Catalog.Application.UseCase.UseCase.GetProductById;
 using Moq;
 using Xunit;
@@ -9,14 +10,17 @@ namespace Ex.Arq.Hex.Application.UseCase.Units.Tests.GetProductById
     public class GetProductByIdInteractorTest
     {
         private readonly Mock<IProductRepository> _productRepository;
-        private readonly GetProductByIdInteractor _getProductByIdInteractor;
+        private readonly Mock<ICachingService> _cache;
+        private readonly GetProductByIdInteractor _getProductByIdInteractor;      
+
         private readonly Guid _id;
         private readonly GetProductByIdPortIn _productPortIn;
 
         public GetProductByIdInteractorTest()
         {
-            _productRepository = new Mock<IProductRepository>();
-            _getProductByIdInteractor = new GetProductByIdInteractor(_productRepository.Object);
+            _productRepository = new();
+            _cache = new();
+            _getProductByIdInteractor = new GetProductByIdInteractor(_productRepository.Object,_cache.Object);
             _id = Guid.NewGuid();
             _productPortIn = new GetProductByIdPortIn(_id);
         }

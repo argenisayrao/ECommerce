@@ -1,8 +1,13 @@
-﻿using Ecommerce.Core.Domain.Helpers.Exceptions;
+﻿using Ecommerce.Core.Domain;
+using Ecommerce.Core.Domain.Helpers.Exceptions;
 using ECommerce.Catalog.Application.DomainModel.Entities;
 using ECommerce.Catalog.Application.UseCase.Ports.Out;
+using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
+using ECommerce.Catalog.Application.UseCase.Util;
+using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Pagination;
 using MongoDB.Driver;
 using Polly;
+using System.Text;
 
 namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB
 {
@@ -49,10 +54,18 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB
             return await _collection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public async Task<IReadOnlyCollection<Product>> SearchAsyncByName(string key)
+        public async Task<PageListDto<Product>> SearchAsyncByName(SearchProductFilter filter)
         {
-            var filter = _filterBuilder.Where(x => x.Name.Contains(key));
-            return await _collection.Find(filter).ToListAsync();
+            var filterData = _filterBuilder.Empty;
+
+            if (filter.Name.HasValue())
+                filterData = _filterBuilder.Where(x => x.Name.ToLower().Contains(filter.Name.ToLower()));
+
+            return await PaginationExtension.GetPaged<Product>(_collection,
+                filterData,
+                filter.Page,
+                filter.PageSize,
+                nameof(Product.Name));
         }
 
         private static double CalculateTimeSpamForRetryInterval(int retryAttempt)

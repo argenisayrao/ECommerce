@@ -1,4 +1,5 @@
 ﻿using ECommerce.Catalog.Application.DomainModel.Entities;
+using ECommerce.Catalog.Application.UseCase.Services.Interfaces;
 using ECommerce.Catalog.Application.UseCase.UseCase.GetProductById;
 using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
 using ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.Constants;
@@ -9,6 +10,7 @@ using ECommerce.Catalog.Integration.Tests.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using MongoDB.Driver;
+using Moq;
 using System.Diagnostics;
 using Xunit;
 
@@ -20,6 +22,7 @@ namespace ECommerce.Catalog.Integration.Tests.Tests.Products
         private static ProductRepository productRepository;
         private readonly IMongoDatabase _mongoDatabase;
         private readonly IMongoCollection<Product> _collection;
+        private readonly Mock<ICachingService> _cache;
         private static GetProductByIdInteractor _getProductByIdInteractor;
         private static IMongoDatabase collection;
         private readonly IConfigurationRoot _configuration = AppSettingsHelper.GetAppSettings();
@@ -42,7 +45,7 @@ namespace ECommerce.Catalog.Integration.Tests.Tests.Products
             _mongoDatabase = new MongoClient(_configuration.GetConnectionString(ConstantsMongo.MongoDBConnection))
                .GetDatabase(ConstantsMongo.MongoDataBaseName);
             _collection = _mongoDatabase.GetCollection<Product>("Products");
-            _getProductByIdInteractor = new GetProductByIdInteractor(new ProductRepository(_mongoDatabase));
+            _getProductByIdInteractor = new GetProductByIdInteractor(new ProductRepository(_mongoDatabase), _cache.Object);
             _producer = new ProducerEventProductCreated
                 (_configuration.GetConnectionString(ConstantsKafka.KafkaBootstrapServers));
         }
@@ -72,15 +75,10 @@ namespace ECommerce.Catalog.Integration.Tests.Tests.Products
 
             productRepository = new(_mongoDatabase);
 
-           // var process = StartApplication("appsettings.json");
-
             await Task.Delay(1000);
             await _producer.SendEventProductCreated(cadeira);
             await _producer.SendEventProductCreated(mesa);
             await Task.Delay(1000);
-
-           // process.Kill();
-          //  await process.WaitForExitAsync();
 
             var mesaFromDatabase = await _getProductByIdInteractor.ExecuteAsync(new GetProductByIdPortIn(idMesa));
             var cadeiraFromDatabase = await _getProductByIdInteractor.ExecuteAsync(new GetProductByIdPortIn(idCadeira));
@@ -110,7 +108,7 @@ namespace ECommerce.Catalog.Integration.Tests.Tests.Products
             productRepository = new(_mongoDatabase);
             var getProductByIdPortIn = new GetProductByIdPortIn(Guid.Parse(_ids[0]));
 
-            var interactor = new GetProductByIdInteractor(productRepository);
+            var interactor = new GetProductByIdInteractor(productRepository, _cache.Object);
             var portOut = await interactor.ExecuteAsync(getProductByIdPortIn);
 
             Assert.Equal(_ids[0], portOut.Id);
@@ -130,67 +128,13 @@ namespace ECommerce.Catalog.Integration.Tests.Tests.Products
                 var portIn = new SearchProductsPortIn(key);
 
                 var interactor = new SearchProductsInteractor(productRepository);
-                var searchProductsInteractor = await interactor.ExecuteAsync(portIn);
+                var pagination = await interactor.ExecuteAsync(portIn);
 
-                searchProductsInteractor.SearchProductPortOut.ForEach(product =>
+                pagination.Items.ToList().ForEach(product =>
                 {
-                    Assert.Contains(portIn.Key.ToLower(), product.Name.ToLower());
+                    Assert.Contains(portIn.Name.ToLower(), product.Name.ToLower());
                 });
-            });
-       
-               
-            
+            });            
         }
-
-        //[Fact, TestPriority(4)]
-        //public static async Task Product_UpdateProduct_Success()
-        //{
-        //    productRepository = new(new AppDb());
-        //    getProductByIdInteractor = new GetProductByIdInteractor(productRepository);
-
-        //    _names[0] = "Escrivaninha";
-        //    _values[0] = 150.00;
-        //    var updateProductPortIn = new UpdateProductPortIn(Guid.Parse(_ids[0]), _names[0], _values[0]);
-        //    var interactor = new UpdateProductInteractor(productRepository);
-
-        //    await interactor.ExecuteAsync(updateProductPortIn);
-
-        //    GetProductByIdPortOut getProductById = await getProductByIdInteractor.
-        //        ExecuteAsync(new GetProductByIdPortIn(Guid.Parse(_ids[0])));
-
-        //    Assert.Equal(Guid.Parse(_ids[0]), getProductById.Id);
-        //    Assert.Equal(_names[0], getProductById.Name);
-        //    Assert.Equal(_values[0], getProductById.Value);
-        //}
-
-        //[Fact, TestPriority(5)]
-        //public static async Task Product_DeleteProduct_Success()
-        //{
-        //    productRepository = new(new AppDb());
-        //    getProductByIdInteractor = new GetProductByIdInteractor(productRepository);
-
-        //    var deleteProductPortIn = new DeleteProductPortIn(Guid.Parse(_ids[0]), _names[0], _values[0]);
-        //    var interactor = new DeleteProductInteractor(productRepository);
-
-        //    await interactor.ExecuteAsync(deleteProductPortIn);
-
-        //    await Assert.ThrowsAsync<GetProductByIdInteractorException>(() => getProductByIdInteractor.
-        //    ExecuteAsync(new GetProductByIdPortIn(Guid.Parse(_ids[0]))));
-        //}
-
-        //[Fact, TestPriority(6)]
-        //public static async Task Product_DeleteProductById_Success()
-        //{
-        //    productRepository = new(new AppDb());
-        //    getProductByIdInteractor = new GetProductByIdInteractor(productRepository);
-
-        //    var deleteProductPortIn = new DeleteProductByIdPortIn(Guid.Parse(_ids[1]));
-        //    var interactor = new DeleteProductByIdInteractor(productRepository);
-
-        //    await interactor.ExecuteAsync(deleteProductPortIn);
-
-        //    await Assert.ThrowsAsync<GetProductByIdInteractorException>(() => getProductByIdInteractor.
-        //    ExecuteAsync(new GetProductByIdPortIn(Guid.Parse(_ids[1]))));
-        //}
     }
 }

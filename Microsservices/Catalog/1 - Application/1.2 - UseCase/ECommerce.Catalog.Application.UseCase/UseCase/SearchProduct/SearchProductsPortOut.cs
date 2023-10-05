@@ -4,28 +4,13 @@ using System.Text.Json.Serialization;
 
 namespace ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct
 {
-    public class SearchProductsPortOut
-    {
-        public SearchProductsPortOut(List<Product> products)
-        {
-            products.ForEach(product =>
-            {
-                SearchProductPortOut.Add(
-                new SearchProductPortOut(product.Id.ToString(),
-                                         product.Name,
-                                         product.Value));
-            });
-        }
-        public List<SearchProductPortOut> SearchProductPortOut { get; private set; } = new();
-    }
-
     public class SearchProductPortOut
     {
-        public SearchProductPortOut(string id, string name, double value)
+        public SearchProductPortOut(Product product)
         {
-            Id = id;
-            Name = name;
-            Value = value;
+            Id = product.Id.ToString(); ;
+            Name = product.Name;
+            Value = product.Value;
         }
 
         public string Id { get; private set; }

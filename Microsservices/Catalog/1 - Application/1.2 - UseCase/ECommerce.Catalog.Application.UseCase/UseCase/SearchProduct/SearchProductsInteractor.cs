@@ -1,6 +1,7 @@
 ﻿using ECommerce.Catalog.Application.DomainModel.Entities;
 using ECommerce.Catalog.Application.UseCase.Ports.In;
 using ECommerce.Catalog.Application.UseCase.Ports.Out;
+using ECommerce.Catalog.Application.UseCase.Util;
 
 namespace ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct
 {
@@ -13,13 +14,13 @@ namespace ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct
             _productRepository = productRepository;
         }
 
-        public async Task<SearchProductsPortOut> ExecuteAsync(SearchProductsPortIn portIn)
+        public async Task<PageListDto<SearchProductPortOut>> ExecuteAsync(SearchProductsPortIn portIn)
         {
-            var products = await _productRepository.SearchAsyncByName(portIn.Key);
+            var products = await _productRepository.SearchAsyncByName(new SearchProductFilter(portIn));
 
-            var searchProductPortOut = new SearchProductsPortOut(products.ToList());
-            
-            return searchProductPortOut;
+            var response =  new PageListDto<SearchProductPortOut>(products, products.Items.Select(x=> new SearchProductPortOut(x)).ToList());
+
+            return response;
         }
     }
 }

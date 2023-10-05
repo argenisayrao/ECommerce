@@ -5,6 +5,7 @@ using System.Net;
 using ECommerce.Catalog.Application.UseCase.Ports.In;
 using ECommerce.Catalog.Application.UseCase.UseCase.GetProductById;
 using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
+using ECommerce.Catalog.Application.UseCase.Util;
 
 namespace ECommerce.Catalog.InfrastructureAdapter.In.WebApi.Controllers
 {
@@ -44,22 +45,21 @@ namespace ECommerce.Catalog.InfrastructureAdapter.In.WebApi.Controllers
         [HttpGet]
         [Route("search-products")]
         [SwaggerOperation("Search for product by name")]
-        [SwaggerResponse((int)HttpStatusCode.OK, "Indicates that the product was found", typeof(List<SearchProductsPortOut>))]
+        [SwaggerResponse((int)HttpStatusCode.OK, "Indicates that the product was found", typeof(PageListDto<SearchProductPortOut>))]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, "Indicates that the key used in the search is null or empty")]
         [SwaggerResponse((int)HttpStatusCode.NotFound, "Indicates that the product was not found")]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> SearchProduct(string key)
+        public async Task<IActionResult> SearchProduct([FromQuery] SearchProductsPortIn portIn)
         {
-            if (string.IsNullOrWhiteSpace(key))
+            if (portIn is null)
             {
                 return BadRequest();
             }
 
-            var searchProductsPortIn = new SearchProductsPortIn(key);
-            var searchProductsPortOut = await _searchProducts.ExecuteAsync(searchProductsPortIn);
+            var pagination = await _searchProducts.ExecuteAsync(portIn);
 
-            if (searchProductsPortOut.SearchProductPortOut.Any())
-                return Ok(searchProductsPortOut);
+            if (pagination.Items.Any())
+                return Ok(pagination);
 
             return NotFound();
         }
