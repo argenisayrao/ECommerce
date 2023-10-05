@@ -28,7 +28,7 @@ IHost host = Host.CreateDefaultBuilder(args)
 
         services.AddSingleton(consumer);
 
-        services.AddAplicationWithAccessData(configuration);
+        services.AddAplicationWithAccessDataForEvents(configuration);
         services.AddScoped<ConsumerProductCreated>();
         services.AddHostedService<ConsumerProductCreated>();
     })

@@ -2,8 +2,7 @@
 using ECommerce.Catalog.Application.UseCase.UseCase.GetProductById;
 using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
 using ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.Constants;
-using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Constants;
-using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository;
+using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB;
 using ECommerce.Catalog.Integration.Tests.Attributes;
 using ECommerce.Catalog.Integration.Tests.Helpers;
 using ECommerce.Catalog.Integration.Tests.Repositories;

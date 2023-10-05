@@ -12,7 +12,6 @@ namespace ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.Consumers
     {
         private readonly IAddProductInteractor _addProduct;
         private readonly ConsumerConfig _consumerConfig;
-        private readonly IConfigurationRoot _configuration;
 
         public ConsumerProductCreated(IAddProductInteractor addProduct,
             ConsumerConfig consumer,
@@ -20,7 +19,6 @@ namespace ECommerce.Catalog.InfrastructureAdapter.In.Bus.Kafka.Consumers
         {
             _addProduct = addProduct ?? throw new ArgumentNullException(nameof(addProduct));
             _consumerConfig = consumer ?? throw new ArgumentNullException(nameof(consumer));
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

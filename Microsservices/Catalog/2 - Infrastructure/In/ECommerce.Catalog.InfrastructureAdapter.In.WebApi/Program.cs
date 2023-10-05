@@ -1,3 +1,6 @@
+using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB;
+using ECommerce.Catalog.InfrastructureAdapter.Out.Redis;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCachingScope(builder.Configuration);
+builder.Services.AddAplicationWithAccessDataForWebApi(builder.Configuration);
 
 var app = builder.Build();
 

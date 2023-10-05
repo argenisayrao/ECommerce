@@ -19,7 +19,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\1 - Application\1.2 - UseCase\ECommerce.Catalog.Application.UseCase\ECommerce.Catalog.Application.UseCase.csproj" />
+    <ProjectReference Include="..\..\Out\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB\ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.csproj" />
+    <ProjectReference Include="..\..\Out\ECommerce.Catalog.InfrastructureAdapter.Out.Redis\ECommerce.Catalog.InfrastructureAdapter.Out.Redis.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

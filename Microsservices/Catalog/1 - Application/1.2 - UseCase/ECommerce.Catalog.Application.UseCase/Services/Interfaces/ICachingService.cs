@@ -1,4 +1,4 @@
-﻿namespace ECommerce.Catalog.Application.UseCase.Ports.Out
+﻿namespace ECommerce.Catalog.Application.UseCase.Services.Interfaces
 {
     public interface ICachingService
     {

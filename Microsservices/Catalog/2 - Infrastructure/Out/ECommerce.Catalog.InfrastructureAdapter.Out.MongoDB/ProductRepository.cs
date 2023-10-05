@@ -1,11 +1,10 @@
 ﻿using Ecommerce.Core.Domain.Helpers.Exceptions;
 using ECommerce.Catalog.Application.DomainModel.Entities;
 using ECommerce.Catalog.Application.UseCase.Ports.Out;
-using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Constants;
 using MongoDB.Driver;
 using Polly;
 
-namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
+namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB
 {
     public class ProductRepository : IProductRepository
     {
@@ -53,7 +52,7 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
         public async Task<IReadOnlyCollection<Product>> SearchAsyncByName(string key)
         {
             var filter = _filterBuilder.Where(x => x.Name.Contains(key));
-            return await _collection.Find(filter).ToListAsync();        
+            return await _collection.Find(filter).ToListAsync();
         }
 
         private static double CalculateTimeSpamForRetryInterval(int retryAttempt)

@@ -12,21 +12,15 @@ namespace ECommerce.Catalog.InfrastructureAdapter.In.WebApi.Controllers
     [Route("api/v1/product")]
     public class ProductController : ControllerBase
     {
-        private readonly IAddProductInteractor _addProduct;
         private readonly ISearchProductsInteractor _searchProducts;
         private readonly IGetProductByIdInteractor _getProductById;
-        private readonly IMapper _mapper;
 
 
-        public ProductController(IAddProductInteractor addProductInteractor,
-            ISearchProductsInteractor searchProducts,
-            IGetProductByIdInteractor getProductById,
-            IMapper mapper)
+        public ProductController(ISearchProductsInteractor searchProducts,
+            IGetProductByIdInteractor getProductById)
         {
-            _addProduct = addProductInteractor;
             _searchProducts = searchProducts;
             _getProductById = getProductById;
-            _mapper = mapper;
         }
 
         [HttpGet]
