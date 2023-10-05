@@ -8,11 +8,14 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.Redis
     {
         public static IServiceCollection AddCachingScope(this IServiceCollection services, IConfiguration configuration)
         {
+            var connection = $"{configuration.GetConnectionString(ConstantsRedis.Address)}," +
+                $"{configuration.GetConnectionString(ConstantsRedis.Password)}";
+
             services.AddScoped<ICachingRepository, CachingRepository>();
             services.AddStackExchangeRedisCache(options =>
             {
                 options.InstanceName = ConstantsRedis.InstaceName;
-                options.Configuration = configuration.GetConnectionString($"{ConstantsRedis.Address},{ConstantsRedis.Password}");
+                options.Configuration = connection;
             });
 
             return services;

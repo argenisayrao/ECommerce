@@ -1,6 +1,4 @@
 ﻿using ECommerce.Catalog.Application.DomainModel.Entities;
-using MongoDB.Bson;
-using System.Text.Json.Serialization;
 
 namespace ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct
 {
