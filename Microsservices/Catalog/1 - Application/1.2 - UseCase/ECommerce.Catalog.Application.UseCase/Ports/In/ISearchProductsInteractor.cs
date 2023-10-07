@@ -1,9 +1,10 @@
 ﻿using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
+using ECommerce.Catalog.Application.UseCase.Util;
 
 namespace ECommerce.Catalog.Application.UseCase.Ports.In
 {
     public interface ISearchProductsInteractor
     {
-        Task<IReadOnlyCollection<SearchProductsPortOut>> ExecuteAsync(SearchProductsPortIn portIn);
+        Task<PageListDto<SearchProductPortOut>> ExecuteAsync(SearchProductsPortIn portIn);
     }
 }

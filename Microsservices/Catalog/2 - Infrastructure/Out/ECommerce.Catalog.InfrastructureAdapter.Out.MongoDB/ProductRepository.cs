@@ -1,18 +1,15 @@
-﻿using Ecommerce.Core.Domain.Helpers.Exceptions;
+﻿using Ecommerce.Core.Domain;
+using Ecommerce.Core.Domain.Helpers.Exceptions;
 using ECommerce.Catalog.Application.DomainModel.Entities;
 using ECommerce.Catalog.Application.UseCase.Ports.Out;
-using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Constants;
+using ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct;
+using ECommerce.Catalog.Application.UseCase.Util;
+using ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Pagination;
 using MongoDB.Driver;
 using Polly;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Bson.IO;
 
-namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
+namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB
 {
     public class ProductRepository : IProductRepository
     {
@@ -33,15 +30,15 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
                 .WaitAndRetry(ConstantsMongo.NumberOfTries, retryAttempt =>
                 TimeSpan.FromSeconds(CalculateTimeSpamForRetryInterval(retryAttempt)));
         }
-         
+
         public async Task AddAsync(Product product)
         {
             try
             {
-                //await _retryPolicy.Execute(async () =>
-                //{
+                await _retryPolicy.Execute(async () =>
+                {
                     await _collection.InsertOneAsync(product);
-                //});
+                });
             }
             catch (Exception errorAtInsertInDatabase)
             {
@@ -51,14 +48,24 @@ namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Repository
             }
         }
 
-        public Task<Product> GetByIdAsync(Guid id)
+        public async Task<Product> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = _filterBuilder.Where(x => x.Id == id);
+            return await _collection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public Task<IReadOnlyCollection<Product>> SearchAsync(string key)
+        public async Task<PageListDto<Product>> SearchAsyncByName(SearchProductFilter filter)
         {
-            throw new NotImplementedException();
+            var filterData = _filterBuilder.Empty;
+
+            if (filter.Name.HasValue())
+                filterData = _filterBuilder.Where(x => x.Name.ToLower().Contains(filter.Name.ToLower()));
+
+            return await PaginationExtension.GetPaged<Product>(_collection,
+                filterData,
+                filter.Page,
+                filter.PageSize,
+                nameof(Product.Name));
         }
 
         private static double CalculateTimeSpamForRetryInterval(int retryAttempt)

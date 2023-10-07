@@ -1,19 +1,18 @@
-﻿using MongoDB.Bson;
+﻿using ECommerce.Catalog.Application.DomainModel.Entities;
 
 namespace ECommerce.Catalog.Application.UseCase.UseCase.SearchProduct
 {
-    public class SearchProductsPortOut
+    public class SearchProductPortOut
     {
-        public SearchProductsPortOut(ObjectId id, string name, double value)
+        public SearchProductPortOut(Product product)
         {
-            Id = id;
-            Name = name;
-            Value = value;
+            Id = product.Id.ToString(); ;
+            Name = product.Name;
+            Value = product.Value;
         }
 
-        public ObjectId Id { get; private set; }
+        public string Id { get; private set; }
         public string Name { get; private set; }
         public double Value { get; private set; }
-
     }
 }

@@ -1,5 +1,6 @@
-﻿namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB.Constants
-{    public static class ConstantsMongo
+﻿namespace ECommerce.Catalog.InfrastructureAdapter.Out.MongoDB
+{
+    public static class ConstantsMongo
     {
         public const string MongoDBConnection = "MongoDBConnection";
         public const string MongoDataBaseName = "Catalog";

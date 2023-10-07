@@ -22,21 +22,21 @@ namespace ECommerce.Catalog.Application.DomainModel.Notifiables {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class NotificationMessage {
+    public class NotificationMessage {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal NotificationMessage() {
+        public NotificationMessage() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ECommerce.Catalog.Application.DomainModel.Notifiables.NotificationMessage", typeof(NotificationMessage).Assembly);
@@ -51,7 +51,7 @@ namespace ECommerce.Catalog.Application.DomainModel.Notifiables {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ECommerce.Catalog.Application.DomainModel.Notifiables {
         /// <summary>
         ///   Looks up a localized string similar to {0} must not exceed {1} chars.
         /// </summary>
-        internal static string ExceededCharacters {
+        public static string ExceededCharacters {
             get {
                 return ResourceManager.GetString("ExceededCharacters", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ECommerce.Catalog.Application.DomainModel.Notifiables {
         /// <summary>
         ///   Looks up a localized string similar to {0} property must have at least {1} chars.
         /// </summary>
-        internal static string HaveAtLeast {
+        public static string HaveAtLeast {
             get {
                 return ResourceManager.GetString("HaveAtLeast", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ECommerce.Catalog.Application.DomainModel.Notifiables {
         /// <summary>
         ///   Looks up a localized string similar to {0} is(are) invalid(s).
         /// </summary>
-        internal static string PropertyInvalid {
+        public static string PropertyInvalid {
             get {
                 return ResourceManager.GetString("PropertyInvalid", resourceCulture);
             }
